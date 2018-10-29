@@ -17,10 +17,10 @@ class Papa(BasePortiaSpider):
     allowed_domains = ['www.pbcgov.org']
     start_urls = []
     baseurl = 'https://www.pbcgov.org/papa/Asps/PropertyDetail/PropertyDetail.aspx?parcel=064347160800'
-    pagenum = 1100
-    while pagenum <= 1115:
-        start_urls.append (baseurl + str(pagenum) + '0')
-        pagenum += 1
+    parcelnum = 1100  #Starting Parcel Number
+    while parcelnum <= 1115:  # Ending Parcel Number
+        start_urls.append (baseurl + str(parcelnum) + '0')
+        parcelnum += 1
     #  print (start_urls)
     rules = [
         Rule(
@@ -40,46 +40,34 @@ class Papa(BasePortiaSpider):
                 '#MainContent_divRealProperty',
                 [
                     Field(
-                        'Location_Address',
-                        'div:nth-child(3) > fieldset > div > table > tr > td:nth-child(1) > table > tr:nth-child(2) > .TDValueLeft > span *::text, div:nth-child(3) > fieldset > div > table > tbody > tr > td:nth-child(1) > table > tr:nth-child(2) > .TDValueLeft > span *::text, div:nth-child(3) > fieldset > div > table > tr > td:nth-child(1) > table > tbody > tr:nth-child(2) > .TDValueLeft > span *::text, div:nth-child(3) > fieldset > div > table > tbody > tr > td:nth-child(1) > table > tbody > tr:nth-child(2) > .TDValueLeft > span *::text',
+                        'property_detail',
+                        'div:nth-child(3) > fieldset > div > table > tr > td:nth-child(1) *::text, div:nth-child(3) > fieldset > div > table > tbody > tr > td:nth-child(1) *::text',
                         []),
                     Field(
-                        'Municipality',
-                        'div:nth-child(3) > fieldset > div > table > tr > td:nth-child(1) > table > tr:nth-child(3) > .TDValueLeft > span *::text, div:nth-child(3) > fieldset > div > table > tbody > tr > td:nth-child(1) > table > tr:nth-child(3) > .TDValueLeft > span *::text, div:nth-child(3) > fieldset > div > table > tr > td:nth-child(1) > table > tbody > tr:nth-child(3) > .TDValueLeft > span *::text, div:nth-child(3) > fieldset > div > table > tbody > tr > td:nth-child(1) > table > tbody > tr:nth-child(3) > .TDValueLeft > span *::text',
+                        'owner_information',
+                        'div:nth-child(4) > fieldset *::text',
                         []),
                     Field(
-                        'Parcel_Control_Number',
-                        'div:nth-child(3) > fieldset > div > table > tr > td:nth-child(1) > table > tr:nth-child(4) > .TDValueLeft > span *::text, div:nth-child(3) > fieldset > div > table > tbody > tr > td:nth-child(1) > table > tr:nth-child(4) > .TDValueLeft > span *::text, div:nth-child(3) > fieldset > div > table > tr > td:nth-child(1) > table > tbody > tr:nth-child(4) > .TDValueLeft > span *::text, div:nth-child(3) > fieldset > div > table > tbody > tr > td:nth-child(1) > table > tbody > tr:nth-child(4) > .TDValueLeft > span *::text',
+                        'sales_information',
+                        'div:nth-child(5) > fieldset > table > tr:nth-child(1) > td > div *::text, div:nth-child(5) > fieldset > table > tbody > tr:nth-child(1) > td > div *::text',
                         []),
                     Field(
-                        'Subdivision',
-                        'div:nth-child(3) > fieldset > div > table > tr > td:nth-child(1) > table > tr:nth-child(5) > .TDValueLeft > span *::text, div:nth-child(3) > fieldset > div > table > tbody > tr > td:nth-child(1) > table > tr:nth-child(5) > .TDValueLeft > span *::text, div:nth-child(3) > fieldset > div > table > tr > td:nth-child(1) > table > tbody > tr:nth-child(5) > .TDValueLeft > span *::text, div:nth-child(3) > fieldset > div > table > tbody > tr > td:nth-child(1) > table > tbody > tr:nth-child(5) > .TDValueLeft > span *::text',
+                        'exemption_information',
+                        'div:nth-child(6) > fieldset *::text',
                         []),
                     Field(
-                        'Official_Record',
-                        'div:nth-child(3) > fieldset > div > table > tr > td:nth-child(1) > table > tr:nth-child(6) > .TDValueLeft *::text, div:nth-child(3) > fieldset > div > table > tbody > tr > td:nth-child(1) > table > tr:nth-child(6) > .TDValueLeft *::text, div:nth-child(3) > fieldset > div > table > tr > td:nth-child(1) > table > tbody > tr:nth-child(6) > .TDValueLeft *::text, div:nth-child(3) > fieldset > div > table > tbody > tr > td:nth-child(1) > table > tbody > tr:nth-child(6) > .TDValueLeft *::text',
+                        'property_information',
+                        'div:nth-child(7) > fieldset *::text',
                         []),
                     Field(
-                        'Sale_Date',
-                        'div:nth-child(3) > fieldset > div > table > tr > td:nth-child(1) > table > tr:nth-child(7) > .TDValueLeft *::text, div:nth-child(3) > fieldset > div > table > tbody > tr > td:nth-child(1) > table > tr:nth-child(7) > .TDValueLeft *::text, div:nth-child(3) > fieldset > div > table > tr > td:nth-child(1) > table > tbody > tr:nth-child(7) > .TDValueLeft *::text, div:nth-child(3) > fieldset > div > table > tbody > tr > td:nth-child(1) > table > tbody > tr:nth-child(7) > .TDValueLeft *::text',
+                        'appraisals',
+                        'div:nth-child(8) > fieldset > table > tr:nth-child(1) > td > table *::text, div:nth-child(8) > fieldset > table > tbody > tr:nth-child(1) > td > table *::text',
                         []),
                     Field(
-                        'Legal_Description',
-                        'div:nth-child(3) > fieldset > div > table > tr > td:nth-child(1) > table > tr:nth-child(8) > .auto-style2 > span *::text, div:nth-child(3) > fieldset > div > table > tbody > tr > td:nth-child(1) > table > tr:nth-child(8) > .auto-style2 > span *::text, div:nth-child(3) > fieldset > div > table > tr > td:nth-child(1) > table > tbody > tr:nth-child(8) > .auto-style2 > span *::text, div:nth-child(3) > fieldset > div > table > tbody > tr > td:nth-child(1) > table > tbody > tr:nth-child(8) > .auto-style2 > span *::text',
+                        'assessed_values',
+                        'div:nth-child(9) > fieldset > table > tr > td:nth-child(1) > table *::text, div:nth-child(9) > fieldset > table > tbody > tr > td:nth-child(1) > table *::text',
                         []),
                     Field(
-                        'Owner_1',
-                        'div:nth-child(4) > fieldset > table > tr:nth-child(2) > td:nth-child(1) > table > tr:nth-child(2) > .TDValueLeft *::text, div:nth-child(4) > fieldset > table > tbody > tr:nth-child(2) > td:nth-child(1) > table > tr:nth-child(2) > .TDValueLeft *::text, div:nth-child(4) > fieldset > table > tr:nth-child(2) > td:nth-child(1) > table > tbody > tr:nth-child(2) > .TDValueLeft *::text, div:nth-child(4) > fieldset > table > tbody > tr:nth-child(2) > td:nth-child(1) > table > tbody > tr:nth-child(2) > .TDValueLeft *::text',
-                        []),
-                    Field(
-                        'Owner_2',
-                        'div:nth-child(4) > fieldset > table > tr:nth-child(2) > td:nth-child(1) > table > tr:nth-child(3) > .TDValueLeft *::text, div:nth-child(4) > fieldset > table > tbody > tr:nth-child(2) > td:nth-child(1) > table > tr:nth-child(3) > .TDValueLeft *::text, div:nth-child(4) > fieldset > table > tr:nth-child(2) > td:nth-child(1) > table > tbody > tr:nth-child(3) > .TDValueLeft *::text, div:nth-child(4) > fieldset > table > tbody > tr:nth-child(2) > td:nth-child(1) > table > tbody > tr:nth-child(3) > .TDValueLeft *::text',
-                        []),
-                    Field(
-                        'Mailing_Line_1',
-                        'div:nth-child(4) > fieldset > table > tr:nth-child(2) > td:nth-child(2) > table > tr:nth-child(2) > .TDValueLeft *::text, div:nth-child(4) > fieldset > table > tbody > tr:nth-child(2) > td:nth-child(2) > table > tr:nth-child(2) > .TDValueLeft *::text, div:nth-child(4) > fieldset > table > tr:nth-child(2) > td:nth-child(2) > table > tbody > tr:nth-child(2) > .TDValueLeft *::text, div:nth-child(4) > fieldset > table > tbody > tr:nth-child(2) > td:nth-child(2) > table > tbody > tr:nth-child(2) > .TDValueLeft *::text',
-                        []),
-                    Field(
-                        'Mailing_Line_2',
-                        'div:nth-child(4) > fieldset > table > tr:nth-child(2) > td:nth-child(2) > table > tr:nth-child(4) > .TDValueLeft *::text, div:nth-child(4) > fieldset > table > tbody > tr:nth-child(2) > td:nth-child(2) > table > tr:nth-child(4) > .TDValueLeft *::text, div:nth-child(4) > fieldset > table > tr:nth-child(2) > td:nth-child(2) > table > tbody > tr:nth-child(4) > .TDValueLeft *::text, div:nth-child(4) > fieldset > table > tbody > tr:nth-child(2) > td:nth-child(2) > table > tbody > tr:nth-child(4) > .TDValueLeft *::text',
+                        'taxes',
+                        'div:nth-child(10) > fieldset > table > tr:nth-child(1) > td > table *::text, div:nth-child(10) > fieldset > table > tbody > tr:nth-child(1) > td > table *::text',
                         [])])]]
