@@ -18,7 +18,7 @@ class Papa(BasePortiaSpider):
     start_urls = []
     baseurl = 'https://www.pbcgov.org/papa/Asps/PropertyDetail/PropertyDetail.aspx?parcel=064347160800'
     pagenum = 1100
-    while pagenum <= 1550:
+    while pagenum <= 1115:
         start_urls.append (baseurl + str(pagenum) + '0')
         pagenum += 1
     #  print (start_urls)
