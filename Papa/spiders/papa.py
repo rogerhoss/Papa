@@ -10,14 +10,15 @@ from ..utils.spiders import BasePortiaSpider
 from ..utils.starturls import FeedGenerator, FragmentGenerator
 from ..utils.processors import Item, Field, Text, Number, Price, Date, Url, Image, Regex
 from ..items import PortiaItem, PropertyAppraiserPalmBeachCountyFloridaUsaItem, PropertyAppraiserPalmBeachCountyFloridaUsa1Item
-
+import pkgutil
 
 class Papa(BasePortiaSpider):
     name = "papa"
     allowed_domains = ['www.pbcgov.org']
     start_urls = []
     baseurl = 'https://www.pbcgov.org/papa/Asps/PropertyDetail/PropertyDetail.aspx?parcel='
-    file = open('winners.txt', 'r')
+    #file = open('winners.txt', 'r')
+    file = pkgutil.get_data("project", "resources/winners.txt")
     counter = 0
     for line in file:
         start_urls.append (baseurl + line.rstrip())
