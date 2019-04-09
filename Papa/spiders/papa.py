@@ -1,8 +1,5 @@
 from __future__ import absolute_import
 
-import scrapy
-from scrapy.crawler import CrawlerProcess
-
 from scrapy import Request
 from scrapy.linkextractors import LinkExtractor
 from scrapy.loader import ItemLoader
@@ -21,7 +18,7 @@ class Papa(BasePortiaSpider):
     start_urls = []
     baseurl = 'https://www.pbcgov.org/papa/Asps/PropertyDetail/PropertyDetail.aspx?parcel=064347160800'
     parcelnum = 1100  #Starting Parcel Number
-    while parcelnum <= 1102:  # Ending Parcel Number
+    while parcelnum <= 9700:  # Ending Parcel Number
         start_urls.append (baseurl + str(parcelnum) + '0')
         parcelnum += 1
     #  print (start_urls)
@@ -74,8 +71,3 @@ class Papa(BasePortiaSpider):
                         'taxes',
                         'div:nth-child(10) > fieldset > table > tr:nth-child(1) > td > table *::text, div:nth-child(10) > fieldset > table > tbody > tr:nth-child(1) > td > table *::text',
                         [])])]]
-
-process = CrawlerProcess(get_project_settings())
-
-process.crawl(papa)
-process.start()
