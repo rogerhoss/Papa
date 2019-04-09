@@ -16,12 +16,15 @@ class Papa(BasePortiaSpider):
     name = "papa"
     allowed_domains = ['www.pbcgov.org']
     start_urls = []
-    baseurl = 'https://www.pbcgov.org/papa/Asps/PropertyDetail/PropertyDetail.aspx?parcel=064347160800'
-    parcelnum = 1100  #Starting Parcel Number
-    while parcelnum <= 1125:  # Ending Parcel Number
-        start_urls.append (baseurl + str(parcelnum) + '0')
-        parcelnum += 1
-    #  print (start_urls)
+    baseurl = 'https://www.pbcgov.org/papa/Asps/PropertyDetail/PropertyDetail.aspx?parcel='
+    file = open('winners.txt', 'r')
+    counter = 0
+    for line in file:
+        start_urls.append (baseurl + str(parcelnum))
+        counter += 1
+        if counter > 5:
+            break
+
     rules = [
         Rule(
             LinkExtractor(
