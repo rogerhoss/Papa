@@ -20,10 +20,11 @@ class Papa(BasePortiaSpider):
     file = open('winners.txt', 'r')
     counter = 0
     for line in file:
-        start_urls.append (baseurl + str(parcelnum))
+        start_urls.append (baseurl + line.rstrip())
         counter += 1
         if counter > 5:
             break
+    file.close()
 
     rules = [
         Rule(
