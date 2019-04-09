@@ -18,7 +18,7 @@ class Papa(BasePortiaSpider):
     start_urls = []
     baseurl = 'https://www.pbcgov.org/papa/Asps/PropertyDetail/PropertyDetail.aspx?parcel=064347160800'
     parcelnum = 1100  #Starting Parcel Number
-    while parcelnum <= 9700:  # Ending Parcel Number
+    while parcelnum <= 1125:  # Ending Parcel Number
         start_urls.append (baseurl + str(parcelnum) + '0')
         parcelnum += 1
     #  print (start_urls)
