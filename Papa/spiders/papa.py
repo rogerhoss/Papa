@@ -15,7 +15,8 @@ import pkgutil
 class Papa(BasePortiaSpider):
     name = "papa"
     allowed_domains = ['www.pbcgov.org']
-    start_urls = ['https://www.pbcgov.org/papa/Asps/PropertyDetail/PropertyDetail.aspx?parcel=06434716080080090']
+    start_urls = ['https://www.pbcgov.org/papa/Asps/PropertyDetail/PropertyDetail.aspx?parcel=06434732080008010']
+    print ("Roger Test")
     #start_urls = []
     #baseurl = 'https://www.pbcgov.org/papa/Asps/PropertyDetail/PropertyDetail.aspx?parcel='
     #file = open('winners.txt', 'r')
