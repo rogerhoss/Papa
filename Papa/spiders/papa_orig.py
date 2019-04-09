@@ -8,17 +8,17 @@ from scrapy.spiders import Rule
 
 from ..utils.spiders import BasePortiaSpider
 from ..utils.starturls import FeedGenerator, FragmentGenerator
-from ..utils.processors import Item, Field, Text, Number, Price, Date, Url, Image, Regex
+from ..utils.procpipessors import Item, Field, Text, Number, Price, Date, Url, Image, Regex
 from ..items import PortiaItem, PropertyAppraiserPalmBeachCountyFloridaUsaItem, PropertyAppraiserPalmBeachCountyFloridaUsa1Item
 
 
 class Papa(BasePortiaSpider):
-    name = "papa"
+    name = "papa1"
     allowed_domains = ['www.pbcgov.org']
     start_urls = []
     baseurl = 'https://www.pbcgov.org/papa/Asps/PropertyDetail/PropertyDetail.aspx?parcel=064347160800'
     parcelnum = 1100  #Starting Parcel Number
-    while parcelnum <= 9700:  # Ending Parcel Number
+    while parcelnum <= 1105:  # Ending Parcel Number
         start_urls.append (baseurl + str(parcelnum) + '0')
         parcelnum += 1
     #  print (start_urls)
