@@ -11,6 +11,7 @@ from ..utils.starturls import FeedGenerator, FragmentGenerator
 from ..utils.processors import Item, Field, Text, Number, Price, Date, Url, Image, Regex
 from ..items import PortiaItem, PropertyAppraiserPalmBeachCountyFloridaUsaItem, PropertyAppraiserPalmBeachCountyFloridaUsa1Item
 import pkgutil
+import pudb; pudb.set_trace()
 
 class Papa(BasePortiaSpider):
     name = "papa"
