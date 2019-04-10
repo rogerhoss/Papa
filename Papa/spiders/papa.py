@@ -21,7 +21,7 @@ class Papa(BasePortiaSpider):
     start_urls.append ('https://www.pbcgov.org/papa/Asps/PropertyDetail/PropertyDetail.aspx?parcel=06434732110020181')
     #baseurl = 'https://www.pbcgov.org/papa/Asps/PropertyDetail/PropertyDetail.aspx?parcel='
     #file = open('winners.txt', 'r')
-    #file = pkgutil.get_data("project", "resources/winners.txt")
+    file = pkgutil.get_data("project", "resources/winners.txt")
     #counter = 0
     #for line in file:
     #    start_urls.append (baseurl + line.rstrip())
