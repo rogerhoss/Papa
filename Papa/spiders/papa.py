@@ -15,21 +15,14 @@ import pkgutil
 class Papa(BasePortiaSpider):
     name = "papa"
     allowed_domains = ['www.pbcgov.org']
-    start_urls = []
-    #start_urls.append ('https://www.pbcgov.org/papa/Asps/PropertyDetail/PropertyDetail.aspx?parcel=06434732080008010')
-    #baseurl = 'https://www.pbcgov.org/papa/Asps/PropertyDetail/PropertyDetail.aspx?parcel='
-    #file = open('winners.txt', 'r')
     file = pkgutil.get_data("Papa", "resources/winners.txt")
     normalContent = file.decode('ascii')
     lines = normalContent.splitlines()
-    start_urls.append ('https://www.pbcgov.org/papa/Asps/PropertyDetail/PropertyDetail.aspx?parcel='+lines[0])
-    #counter = 0
-    #for line in file:
-    #    start_urls.append (baseurl + line.rstrip())
-    #    counter += 1
-    #    if counter > 5:
-    #        break
-    #file.close()
+    index = 0
+    start_urls = []
+    while (index < len(lines)):
+        start_urls.append ('https://www.pbcgov.org/papa/Asps/PropertyDetail/PropertyDetail.aspx?parcel='+lines[index])
+        index += 1
 
     rules = [
         Rule(
